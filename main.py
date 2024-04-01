@@ -47,6 +47,7 @@ if owned_games:
                 "name": game["name"],
                 "appid": game["appid"],
                 "img_icon_url": "http://media.steampowered.com/steamcommunity/public/images/apps/{appid}/{hash}.jpg".format(appid = game["appid"],hash = game["img_icon_url"]),
+                "img_logo_url": "https://cdn.cloudflare.steamstatic.com/steam/apps/{appid}/header.jpg".format(appid = game["appid"]),
                 "playtime_hours": playtime_hours,
                 "earned_achievements": f"{earned_achievements}/{total_achievements}"
             })
