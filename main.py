@@ -3,7 +3,7 @@ import json
 from datetime import datetime
 
 def get_owned_games(api_key, steam_id):
-    url = f"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={api_key}&steamid={steam_id}&format=json"
+    url = f"http://api.steampowered.com/IPlayerService/GetOwnedGames/v0001/?key={api_key}&steamid={steam_id}&format=json&include_appinfo=true"
     response = requests.get(url)
     if response.status_code == 200:
         return response.json()
@@ -44,14 +44,15 @@ if owned_games:
                 total_achievements = 0
             
             game_data_list.append({
+                "name": game["name"],
                 "appid": game["appid"],
                 "playtime_hours": playtime_hours,
                 "earned_achievements": earned_achievements,
                 "total_achievements": total_achievements
             })
                 
-        with open("steam_data.json", "w") as json_file:
-            json.dump(game_data_list, json_file, indent=4)
+        with open("steam_data.json", "w", encoding='utf-8') as json_file:
+            json.dump(game_data_list, json_file, indent=4, ensure_ascii=False)
         
         print("Data written to steam_data.json file.")
     else:
