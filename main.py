@@ -42,13 +42,13 @@ if owned_games:
             else:
                 earned_achievements = 0
                 total_achievements = 0
-            
+                        
             game_data_list.append({
                 "name": game["name"],
                 "appid": game["appid"],
+                "img_icon_url": game["img_icon_url"],
                 "playtime_hours": playtime_hours,
-                "earned_achievements": earned_achievements,
-                "total_achievements": total_achievements
+                "earned_achievements": f"{earned_achievements}/{total_achievements}"
             })
                 
         with open("steam_data.json", "w", encoding='utf-8') as json_file:
